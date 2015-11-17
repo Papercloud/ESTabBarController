@@ -33,7 +33,9 @@ typedef void (^ESTabBarAction)(void);
 // ones a bit transparent.
 @property (nonatomic, assign) BOOL highlightsSelectedButton;
 
-@property (nonatomic) BOOL *showSelectionIndicator;
+//Whether to show the selection indicator at the bottom of the current button
+//Defaults to yes
+@property (nonatomic) BOOL showSelectionIndicator;
 
 
 /**
@@ -42,6 +44,9 @@ typedef void (^ESTabBarAction)(void);
  */
 - (instancetype)initWithTabIcons:(NSArray *)tabIcons;
 
+/**
+ Same as above but allows an array of highlighted icons as well
+ */
 - (instancetype)initWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons;
 
 

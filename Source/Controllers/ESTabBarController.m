@@ -40,13 +40,24 @@
 
 #pragma mark - Init
 
-
-- (instancetype)initWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons {
+- (instancetype)initWithTabIcons:(NSArray *)tabIcons {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     self = [self initWithNibName:@"ESTabBarController" bundle:bundle];
     
     if (self != nil) {
-        [self initializeWithTabIcons:tabIcons highlightedIcons:hightlightedIcons];
+        [self initializeWithTabIcons:tabIcons];
+    }
+    
+    return self;
+}
+
+
+- (instancetype)initWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)highlightedIcons {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    self = [self initWithNibName:@"ESTabBarController" bundle:bundle];
+    
+    if (self != nil) {
+        [self initializeWithTabIcons:tabIcons highlightedIcons:highlightedIcons];
     }
     
     return self;
@@ -197,12 +208,10 @@
 
 #pragma mark - Private methods
 
-
-- (void)initializeWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons {
+- (void)initializeWithTabIcons:(NSArray *)tabIcons {
     NSAssert(tabIcons.count > 0,
              @"The array of tab icons shouldn't be empty.");
     
-    _highlightedTabIcons = hightlightedIcons;
     _tabIcons = tabIcons;
     
     [self setShowSelectionIndicator:YES];
@@ -216,6 +225,16 @@
     _selectedIndex = -1;
     
     self.separatorLineColor = [UIColor lightGrayColor];
+}
+
+
+
+- (void)initializeWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons {
+    
+    [self initializeWithTabIcons:tabIcons];
+    
+    _highlightedTabIcons = hightlightedIcons;
+    
 }
 
 

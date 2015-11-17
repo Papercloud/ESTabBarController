@@ -33,6 +33,8 @@ typedef void (^ESTabBarAction)(void);
 // ones a bit transparent.
 @property (nonatomic, assign) BOOL highlightsSelectedButton;
 
+@property (nonatomic) BOOL *showSelectionIndicator;
+
 
 /**
  Initializes the tab bar with an array of UIImage that will be the icons

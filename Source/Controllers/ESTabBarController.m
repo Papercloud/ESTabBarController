@@ -205,6 +205,8 @@
     _highlightedTabIcons = hightlightedIcons;
     _tabIcons = tabIcons;
     
+    [self setShowSelectionIndicator:YES];
+    
     self.controllers = [NSMutableDictionary dictionaryWithCapacity:tabIcons.count];
     self.actions = [NSMutableDictionary dictionaryWithCapacity:tabIcons.count];
     
@@ -344,8 +346,12 @@
         
         [self setupSelectionIndicatorConstraints];
     }
+    if (self.showSelectionIndicator) {
+        self.selectionIndicator.backgroundColor = self.selectedColor ?: [UIColor blackColor];
+    }else {
+        self.selectionIndicator.backgroundColor = [UIColor clearColor];
+    }
     
-    self.selectionIndicator.backgroundColor = self.selectedColor ?: [UIColor blackColor];
 }
 
 

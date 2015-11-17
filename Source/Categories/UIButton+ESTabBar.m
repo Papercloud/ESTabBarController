@@ -16,13 +16,15 @@
 
 
 - (void)customizeForTabBarWithImage:(UIImage *)image
+                   highlightedImage:(UIImage *)highlightedImage
                       selectedColor:(UIColor *)selectedColor
                         highlighted:(BOOL)highlighted {
     if (highlighted) {
-        [self customizeAsHighlightedButtonForTabBarWithImage:image
+        [self customizeAsHighlightedButtonForTabBarWithImage:highlightedImage? highlightedImage : image
                                                selectedColor:selectedColor];
     } else {
         [self customizeAsNormalButtonForTabBarWithImage:image
+                                       highlightedImage:highlightedImage
                                           selectedColor:selectedColor];
     }
 }
@@ -45,6 +47,7 @@
 
 
 - (void)customizeAsNormalButtonForTabBarWithImage:(UIImage *)image
+                                 highlightedImage:(UIImage *)highlightedImage
                                     selectedColor:(UIColor *)selectedColor {
     
     // The tint color is the one used for selected state.
@@ -57,7 +60,7 @@
     
     // When the button is selected, we apply the tint color using the
     // always template mode.
-    [self setImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+    [self setImage:[(highlightedImage ? :image) imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
           forState:UIControlStateSelected];
     
     // We don't want a background color to use the one in the tab bar.

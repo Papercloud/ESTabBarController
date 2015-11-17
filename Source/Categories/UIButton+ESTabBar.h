@@ -12,6 +12,7 @@
 @interface UIButton (ESTabBar)
 
 - (void)customizeForTabBarWithImage:(UIImage *)image
+                   highlightedImage:(UIImage *)highlightedImage
                       selectedColor:(UIColor *)selectedColor
                         highlighted:(BOOL)highlighted;
 

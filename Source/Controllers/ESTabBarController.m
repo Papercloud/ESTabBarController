@@ -26,7 +26,9 @@
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) NSMutableSet *highlightedButtonIndexes;
 @property (nonatomic, strong) NSArray *tabIcons;
+@property (nonatomic, strong) NSArray *highlightedTabIcons;
 @property (nonatomic, strong) UIView *selectionIndicator;
+
 @property (nonatomic, strong) NSLayoutConstraint *selectionIndicatorLeadingConstraint;
 @property (nonatomic, assign) CGFloat buttonsContainerHeightConstraintInitialConstant;
 
@@ -39,12 +41,12 @@
 #pragma mark - Init
 
 
-- (instancetype)initWithTabIcons:(NSArray *)tabIcons {
+- (instancetype)initWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     self = [self initWithNibName:@"ESTabBarController" bundle:bundle];
     
     if (self != nil) {
-        [self initializeWithTabIcons:tabIcons];
+        [self initializeWithTabIcons:tabIcons highlightedIcons:hightlightedIcons];
     }
     
     return self;
@@ -196,10 +198,11 @@
 #pragma mark - Private methods
 
 
-- (void)initializeWithTabIcons:(NSArray *)tabIcons {
+- (void)initializeWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons {
     NSAssert(tabIcons.count > 0,
              @"The array of tab icons shouldn't be empty.");
     
+    _highlightedTabIcons = hightlightedIcons;
     _tabIcons = tabIcons;
     
     self.controllers = [NSMutableDictionary dictionaryWithCapacity:tabIcons.count];
@@ -266,6 +269,7 @@
         
         BOOL isHighlighted = [self.highlightedButtonIndexes containsObject:@(i)];
         [button customizeForTabBarWithImage:self.tabIcons[i]
+                           highlightedImage:self.highlightedTabIcons[i]
                               selectedColor:self.selectedColor ?: [UIColor blackColor]
                                 highlighted:isHighlighted];
 
@@ -371,6 +375,5 @@
         animations();
     }
 }
-
 
 @end

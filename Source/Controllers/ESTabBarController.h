@@ -40,6 +40,8 @@ typedef void (^ESTabBarAction)(void);
  */
 - (instancetype)initWithTabIcons:(NSArray *)tabIcons;
 
+- (instancetype)initWithTabIcons:(NSArray *)tabIcons highlightedIcons:(NSArray *)hightlightedIcons;
+
 
 /**
  Convenience initializer that receives an array of NSString images names.
@@ -87,6 +89,5 @@ typedef void (^ESTabBarAction)(void);
  buttons. Can be animated.
  */
 - (void)setSelectedIndex:(NSInteger)selectedIndex animated:(BOOL)animated;
-
 
 @end

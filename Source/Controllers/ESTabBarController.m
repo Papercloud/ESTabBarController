@@ -269,7 +269,6 @@
     }
     
     [self customizeButtons];
-    self.buttonsContainer.backgroundColor = self.buttonsBackgroundColor ?: [UIColor lightGrayColor];
 }
 
 
